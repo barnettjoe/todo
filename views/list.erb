@@ -17,7 +17,7 @@
   <ul id="todo_list">
     <% sort_crit = proc { |todo| todo[:completed] } %>
     <% unfinished_first(@list[:todos], sort_crit) do |todo, idx| %>
-      <li <%= "class='complete'" if todo[:completed] %>>
+      <li class="<%= todo_class(todo) %>">
         <form action="<%= "/lists/#{@list_id}/todos/#{idx}" %>" method="post" class="check">
           <input type="hidden" name="completed" value="<%= !todo[:completed] %>">
           <button type="submit">
