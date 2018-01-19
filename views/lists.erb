@@ -1,0 +1,15 @@
+<ul id="lists">
+  <% sort_crit = proc { |list| complete?(list) } %>
+  <% unfinished_first(@lists, sort_crit) do |list, id| %>
+    <li <%= "class=\"complete\"" if complete?(list) %>>
+      <a href=<%= "/lists/#{id}" %> >
+        <h2><%= list[:name] %></h2>
+        <p><%= "#{unfinished(list)} / #{list[:todos].size}" %></p>
+      </a>
+    </li>
+  <% end %>
+</ul>
+
+<% content_for :header_links do %>
+  <a class="add" href="/lists/new">New List</a>
+<% end %>
